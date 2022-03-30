@@ -1,17 +1,18 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { addTodo, removeOne, clearTodo } from './features/todoSlice'
+import { addToDo, removeOne, clearToDo } from './features/ToDoSlice'
 
-function Todo() {
-    const items = useSelector((state) => state.todos.items)
+function ToDo() {
+    const items = useSelector((state) => state.ToDos.items)
     const dispatch = useDispatch()
     const [input, setInput] = useState('')
+console.log(items)
 
-    const renderItems = items.map((item, index) => <li key={index} onClick={() => dispatch(removeOne(index))}>{item}</li>)
+    const renderItems =  items.map((item, index) => <li key={index} onClick={() => dispatch(removeOne(index))}>{item}</li>) 
 
     const submitForm = (e) => {
         e.preventDefault()
-        dispatch(addTodo(input))
+        dispatch(addToDo(input))
     }
 
     return (
@@ -23,9 +24,9 @@ function Todo() {
             <ul>
                 {renderItems}
             </ul>
-            <button onClick={() => dispatch(clearTodo())}>Clear</button>
+            <button onClick={() => dispatch(clearToDo())}>Clear</button>
         </div>
     )
 }
 
-export default Todo
+export default ToDo
